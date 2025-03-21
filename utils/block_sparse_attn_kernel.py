@@ -3,7 +3,7 @@
     Original Author: Eric Lin (xihlin) (https://huggingface.co/microsoft/Phi-3-small-8k-instruct/blob/main/triton_flash_blocksparse_attn.py)
 """
 """
-    Modified by Yizhao Gao
+    Modified by Yizhao Gao 
     Use binary block mask for simplicity. Need to be updated to varlen version for batched inference.
 """
 
@@ -162,7 +162,7 @@ def _fwd_kernel(
 
     k_block_start = 0
     # k_block_end = tl.cdiv((start_m + 1) * BLOCK_M, BLOCK_N)
-    k_block_end = tl.cdiv(N_CTX, BLOCK_N)  # seq_len_k 是 K 的序列长度
+    k_block_end = tl.cdiv(N_CTX+1, BLOCK_N)  # seq_len_k 是 K 的序列长度
     # loop over k, v and update accumulator
     for col_idx in range(k_block_start, k_block_end-1):
         acc, l_i, m_i = _fwd_kernel_inner(
