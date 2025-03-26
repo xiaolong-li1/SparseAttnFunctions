@@ -230,4 +230,5 @@
   </tr>
 </table>
 
+To view the corresponding prompt words for the gallery, please click [here](prompts.txt)
 </div>
