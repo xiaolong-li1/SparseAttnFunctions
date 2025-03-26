@@ -19,7 +19,7 @@
   <tr>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/1000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples/Merge_Attn/1000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 1000 Tokens</span><br>
@@ -28,7 +28,7 @@
     </td>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/2000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples/Merge_Attn/2000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 2000 Tokens</span><br>
@@ -37,7 +37,7 @@
     </td>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/3000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/3000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 3000 Tokens</span><br>
@@ -50,7 +50,7 @@
   <tr>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/4000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/4000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 4000 Tokens</span><br>
@@ -59,7 +59,7 @@
     </td>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/5000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/5000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 5000 Tokens</span><br>
@@ -68,7 +68,7 @@
     </td>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/6000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/6000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 6000 Tokens</span><br>
@@ -81,7 +81,7 @@
   <tr>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/7000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/7000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 7000 Tokens</span><br>
@@ -90,7 +90,7 @@
     </td>
     <td style="padding: 10px; background: #f6f8fa; border-radius: 8px; text-align: center;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Merge_Attn/8000.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/8000.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2f855a; font-weight: 600;">🔄 合并 8000 Tokens</span><br>
@@ -99,7 +99,7 @@
     </td>
     <td style="padding: 10px; background: #ebf8ff; border: 2px solid #63b3ed; border-radius: 8px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
       <video width="100%" style="border-radius: 6px;" controls muted playsinline>
-        <source src="./Merge_Attn/ref.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Merge_Attn/ref.mp4" type="video/mp4">
       </video>
       <div style="margin-top: 8px; font-size: 0.95em;">
         <span style="color: #2b6cb0; font-weight: 700;">⭐ 原始基准</span><br>
@@ -159,19 +159,19 @@
     <!-- Smart Attention -->
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Smart_Attn/smartattn1.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Smart_Attn/smartattn1.mp4" type="video/mp4">
       </video>
     </td>
     <!-- Combined Attention -->
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/combined1.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/combined1.mp4" type="video/mp4">
       </video>
     </td>
     <!-- 基准组 -->
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/ref1.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/ref1.mp4" type="video/mp4">
       </video>
     </td>
   </tr>
@@ -180,55 +180,56 @@
   <tr valign="top">
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Smart_Attn/smartattn2.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Smart_Attn/smartattn2.mp4" type="video/mp4">
       </video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/combined2.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/combined2.mp4" type="video/mp4">
       </video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/ref2.mp4" type="video/mp4">
-      </video>
-    </td>
-  </tr>
-  <tr valign="top">
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-      <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Smart_Attn/smartattn3.mp4" type="video/mp4">
-      </video>
-    </td>
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-      <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/combined3.mp4" type="video/mp4">
-      </video>
-    </td>
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-      <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/ref3.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/ref2.mp4" type="video/mp4">
       </video>
     </td>
   </tr>
   <tr valign="top">
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Smart_Attn/smartattn4.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Smart_Attn/smartattn3.mp4" type="video/mp4">
       </video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/combined4.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/combined3.mp4" type="video/mp4">
       </video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
       <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
-        <source src="./Combined_Attn/ref4.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/ref3.mp4" type="video/mp4">
+      </video>
+    </td>
+  </tr>
+  <tr valign="top">
+    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+      <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Smart_Attn/smartattn4.mp4" type="video/mp4">
+      </video>
+    </td>
+    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+      <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/combined4.mp4" type="video/mp4">
+      </video>
+    </td>
+    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+      <video width="100%" style="border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls muted playsinline>
+        <source src="https://raw.githubusercontent.com/xiaolong-li1/SparseAttnFunctions/refs/heads/dev/examples//Combined_Attn/ref4.mp4" type="video/mp4">
       </video>
     </td>
   </tr>
 </table>
+
 
 To view the corresponding prompt words for the gallery, please click [here](prompts.txt)
 </div>
