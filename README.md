@@ -12,6 +12,9 @@ This repository contains multiple optimized implementations of sparse attention 
 • Large-scale video generation tasks.  
 • Applications requiring efficient attention mechanisms for long sequences.  
 
+
+
+
 ## 🎥 视频效果对比
 
 <div align="center">
@@ -151,50 +154,35 @@ This repository contains multiple optimized implementations of sparse attention 
         </div>
       </div>
     </th>
-    <th style="padding: 12px; background: #f0fff4; border-radius: 8px; text-align: center; width: 33%;">
-      <div style="font-size: 1.1em; color: #2f855a;">
-        🔄 Combined Attention (new method)
-        <div style="font-size: 0.9em; color: #718096; margin-top: 4px;">理论计算量下降70-80%</div>
-      </div>
-    </th>
     <th style="padding: 12px; background: #ebf8ff; border-radius: 8px; text-align: center; width: 34%;">
       <div style="font-size: 1.1em; color: #2b6cb0;">
         ⚖️ 基准对照组
         <div style="font-size: 0.9em; color: #718096; margin-top: 4px;">原始计算量100%</div>
       </div>
     </th>
+    <th style="padding: 12px; background: #f0fff4; border-radius: 8px; text-align: center; width: 33%;">
+      <div style="font-size: 1.1em; color: #2f855a;">
+        🔄 Combined Attention (new method)
+        <div style="font-size: 0.9em; color: #718096; margin-top: 4px;">理论计算量下降70-80%</div>
+      </div>
+    </th>
   </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   <!-- 视频对比行 -->
   <tr valign="top">
     <!-- Smart Attention -->
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
        <video src="https://github.com/user-attachments/assets/f09afe74-40b3-4362-8340-a8735a69b4ed" width="100%" controls autoplay loop></video>
     </td>
+     <!-- 基准组 -->
+    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+      <video src="https://github.com/user-attachments/assets/3d356b84-8d02-4167-b149-e430bbea31bf" width="100%" controls autoplay loop></video>
+    </td>
     <!-- Combined Attention -->
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
        <video src="https://github.com/user-attachments/assets/3d80f62f-e85c-4d30-a9d7-ac77fe5346b3" width="100%" controls autoplay loop></video>
     </td>
-    <!-- 基准组 -->
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-      <video src="https://github.com/user-attachments/assets/b697d58b-8e18-4e58-a1a7-0420645973f8" width="100%" controls autoplay loop></video>
-    </td>
+   
   </tr>
 
   <!-- 重复其他3组视频对比 -->
@@ -203,38 +191,37 @@ This repository contains multiple optimized implementations of sparse attention 
        <video src="https://github.com/user-attachments/assets/09e7967a-bc1e-42d0-a2cd-cf4e537f2d70" width="100%" controls autoplay loop></video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-       <video src="https://github.com/user-attachments/assets/49eb8ff6-223a-47ad-90b8-e1bae7cc123c" width="100%" controls autoplay loop></video>
-    </td>
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
        <video src="https://github.com/user-attachments/assets/b50d7b7d-39fc-4e62-9af3-e817df2db022" width="100%" controls autoplay loop></video>
     </td>
+    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+       <video src="https://github.com/user-attachments/assets/49eb8ff6-223a-47ad-90b8-e1bae7cc123c" width="100%" controls autoplay loop></video>
+    </td>
   </tr>
+  
   <tr valign="top">
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
        <video src="https://github.com/user-attachments/assets/d6bdff00-6745-4103-8fac-08ee09309237" width="100%" controls autoplay loop></video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-      <video src="https://github.com/user-attachments/assets/6abf658f-8ab9-437f-955b-2d6964582f8e" width="100%" controls autoplay loop></video>
-    </td>
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
        <video src="https://github.com/user-attachments/assets/62d2d654-6852-4f64-b50c-d8ea55b5545a" width="100%" controls autoplay loop></video>
     </td>
+    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+      <video src="https://github.com/user-attachments/assets/6abf658f-8ab9-437f-955b-2d6964582f8e" width="100%" controls autoplay loop></video>
+    </td>
   </tr>
+  
   <tr valign="top">
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
        <video src="https://github.com/user-attachments/assets/3aa89b79-6777-4d4f-8fdd-639cfdf64097" width="100%" controls autoplay loop></video>
     </td>
-    <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-       <video src="https://github.com/user-attachments/assets/cea775b3-0364-4fe2-aa99-4936f8d56ac9" width="100%" controls autoplay loop></video>
+     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
+       <video src="https://github.com/user-attachments/assets/dd15be39-b4d9-4cae-8b1b-9d201bdd1002" width="100%" controls autoplay loop></video>
     </td>
     <td style="padding: 10px; background: #f8fafc; border-radius: 8px;">
-       <video src="https://github.com/user-attachments/assets/dd15be39-b4d9-4cae-8b1b-9d201bdd1002" width="100%" controls autoplay loop></video>
+       <video src="https://github.com/user-attachments/assets/cea775b3-0364-4fe2-aa99-4936f8d56ac9" width="100%" controls autoplay loop></video>
     </td>
   </tr>
 </table>
 
 To view the corresponding prompt words for the gallery, please click [here](prompts.txt)
 </div>
-### Contributing:  
-Contributions are welcome! Please follow the [Contribution Guidelines](#) for more details.  
-
