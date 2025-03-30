@@ -6,12 +6,13 @@ This repository contains multiple optimized implementations of sparse attention 
 ### Key Features:  
 • **Sparse Attention Variants**: Includes several approaches to sparse attention, such as windowed attention, block-sparse attention, and more.  
 • **CogVideo2B Integration**: Customized to seamlessly integrate with the CogVideo2B framework, ensuring optimal performance.  
-• **Efficiency**: Designed to reduce memory footprint and accelerate computation, especially for high-resolution video generation.  
-
+• **Efficiency**: Designed to reduce memory footprint and accelerate computation, especially for high-resolution video generation. The proposed **Combined Attention** method achieves the highest sparsity while maintaining minimal quality degradation.
 ### Use Cases:  
 • Large-scale video generation tasks.  
 • Applications requiring efficient attention mechanisms for long sequences.  
 
+### TO DO 
+• Try to do some compression on dim 
 
 
 
