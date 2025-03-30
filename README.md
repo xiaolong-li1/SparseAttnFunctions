@@ -206,5 +206,5 @@ This repository contains multiple optimized implementations of sparse attention 
   </tr>
 </table>
 
-To view the corresponding prompt words for the gallery, please click [here](prompts.txt)
+To view the corresponding prompt words for the gallery, please click [here](./examples/prompts.txt)
 </div>
