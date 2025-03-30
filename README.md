@@ -12,7 +12,7 @@ This repository contains multiple optimized implementations of sparse attention 
 • Applications requiring efficient attention mechanisms for long sequences.  
 
 ### TO DO 
-• Try to do some compression on dim 
+• Try to do some compression on head_dim 
 
 
 
