@@ -69,8 +69,13 @@
             padding: 8px;
             border-radius: 4px;
             border: 1px solid #ddd;
+            background-color: #f9f9f9;
         }
         
+        label:hover {
+            background-color: #e3f2fd;
+        }
+
         input[type="radio"]:checked + span {
             background-color: #e3f2fd;
         }
@@ -99,6 +104,20 @@
             margin-bottom: 10px;
             font-style: italic;
             color: #333;
+        }
+
+        /* 美化样式 */
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .selection {
+            text-align: center;
+        }
+
+        .test-case h3 {
+            color: #4CAF50;
         }
     </style>
 </head>
@@ -132,8 +151,8 @@
     <div id="testContainer" style="display: none;"></div>
     <div id="results" style="display: none;">
         <h3>测试结果</h3>
-        <p>SparseAttn 偏好分数: <span id="sparseScore">0</span>/<span id="maxScore">0</span></p>
-        <p>StandardAttn 偏好分数: <span id="standardScore">0</span>/<span id="maxScore">0</span></p>
+        <p>SparseAttn 偏好分数: <span id="sparseScore">0</span>/<span id="sparsemaxScore">0</span></p>
+        <p>StandardAttn 偏好分数: <span id="standardScore">0</span>/<span id="standardmaxScore">0</span></p>
         <button onclick="calculateResults()">计算结果</button>
     </div>
 
@@ -175,6 +194,15 @@
         let testCases = [];
         let userSelections = [];
 
+        // Fisher-Yates 洗牌算法
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
         // 随机化视频位置
         function randomizeTestCase(testCase) {
             if (Math.random() < 0.5) {
@@ -197,8 +225,8 @@
         // 开始测试，根据选择的数量生成界面
         function startTest() {
             const testCount = parseInt(document.getElementById('testCount').value);
-            testCases = allTestCases.slice(0, testCount).map(testCase => {
-                // 使用 original[1]（c 文件）确定提示词索引
+            const shuffledTestCases = shuffle([...allTestCases]); // 复制并打乱数组
+            testCases = shuffledTestCases.slice(0, testCount).map(testCase => {
                 const promptIndex = getPromptIndex(testCase.original[1]);
                 return { ...testCase, prompt: prompts[promptIndex] };
             });
@@ -208,7 +236,8 @@
             document.getElementById('instructions').style.display = 'block';
             document.getElementById('testContainer').style.display = 'block';
             document.getElementById('results').style.display = 'block';
-            document.getElementById('maxScore').textContent = testCount;
+            document.getElementById('standardmaxScore').textContent = testCount; // 设置最大分数
+            document.getElementById('sparsemaxScore').textContent = testCount; // 设置最大分数
 
             initTestCases();
         }
