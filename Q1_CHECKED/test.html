@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Quality Blind Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .test-case {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .video-pair {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        video {
+            width: 45%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .options {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #results {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        label {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        input[type="radio"]:checked + span {
+            background-color: #e3f2fd;
+        }
+
+        .instructions, .selection {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        select {
+            padding: 5px;
+            font-size: 1em;
+        }
+
+        .ground-truth {
+            display: none;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .prompt {
+            margin-bottom: 10px;
+            font-style: italic;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Quality Blind Test</h1>
+    <div class="selection">
+        <label for="testCount">选择测试案例数量 (1-13):</label>
+        <select id="testCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+        </select>
+        <button onclick="startTest()">开始测试</button>
+    </div>
+    <div class="instructions" id="instructions" style="display: none;">
+        <p><strong>说明:</strong></p>
+        <p>观看每对视频并判断哪个视频质量更好。更好的质量可能意味着更清晰的图像、更少的压缩伪影、更准确的颜色等。你可以在做出选择前多次观看每个视频。</p>
+        <p>点击“播放视频”可同时开始播放两段视频。选择后你的选项将被锁定，但仍可播放视频以再次确认。真实标签将在计算结果后显示。</p>
+    </div>
+
+    <div id="testContainer" style="display: none;"></div>
+    <div id="results" style="display: none;">
+        <h3>测试结果</h3>
+        <p>SparseAttn 偏好分数: <span id="sparseScore">0</span>/<span id="maxScore">0</span></p>
+        <p>StandardAttn 偏好分数: <span id="standardScore">0</span>/<span id="maxScore">0</span></p>
+        <button onclick="calculateResults()">计算结果</button>
+    </div>
+
+    <script>
+        // 提示词列表，按顺序对应编号 1-13
+        const prompts = [
+            "A panda, dressed in a small, red jacket and a tiny hat, sits on a wooden stool in a serene bamboo forest. The panda's fluffy paws strum a miniature acoustic guitar, producing soft, melodic tunes. Nearby, a few other pandas gather, watching curiously and some clapping in rhythm. Sunlight filters through the tall bamboo, casting a gentle glow on the scene. The panda's face is expressive, showing concentration and joy as it plays. The background includes a small, flowing stream and vibrant green foliage, enhancing the peaceful and magical atmosphere of this unique musical performance.",
+            "A garden comes to life as a kaleidoscope of butterflies flutters amidst the blossoms, their delicate wings casting shadows on the petals below. In the background, a grand fountain cascades water with a gentle splendor, its rhythmic sound providing a soothing backdrop. Beneath the cool shade of a mature tree, a solitary wooden chair invites solitude and reflection, its smooth surface worn by the touch of countless visitors seeking a moment of tranquility in nature's embrace.",
+            "A small boy, head bowed and determination etched on his face, sprints through the torrential downpour as闪电 crackles and 雷鸣 rumbles in the distance. The relentless rain pounds the ground, creating a chaotic dance of water droplets that mirror the Dramatic sky's anger. In the far background, the silhouette of a cozy home beckons, a faint beacon of safety and warmth amidst the fierce weather. The scene is one of perseverance and the unyielding spirit of a child braving the elements.",
+            "A suited astronaut, with the red dust of Mars clinging to their boots, reaches out to shake hands with an alien being, their skin a shimmering blue, under the pink-tinged sky of the fourth planet. In the background, a sleek silver rocket, a beacon of human ingenuity, stands tall, its engines powered down, as the two representatives of different worlds exchange a historic greeting amidst the desolate beauty of the Martian landscape.",
+            "An elderly gentleman, with a serene expression, sits at the water's edge, a steaming cup of tea by his side. He is engrossed in his artwork, brush in hand, as he renders an oil painting on a canvas that's propped up against a small, weathered table. The sea breeze whispers through his silver hair, gently billowing his loose-fitting white shirt, while the salty air adds an intangible element to his masterpiece in progress. The scene is one of tranquility and inspiration, with the artist's canvas capturing the vibrant hues of the setting sun reflecting off the tranquil sea.",
+            "In a dimly lit bar, purplish light bathes the face of a mature man, his eyes blinking thoughtfully as he ponders in close-up, the background artfully blurred to focus on his introspective expression, the ambiance of the bar a mere suggestion of shadows and soft lighting",
+            "A golden retriever, sporting sleek black sunglasses, with its lengthy fur flowing in the breeze, sprints playfully across a rooftop terrace, recently refreshed by a light rain. The scene unfolds from a distance, the dog's energetic bounds growing larger as it approaches the camera, its tail wagging with unrestrained joy, while droplets of water glisten on the concrete behind it. The overcast sky provides a dramatic backdrop, emphasizing the vibrant golden coat of the canine as it dashes towards the viewer.",
+            "On a brilliant sunny day, the lakeshore is lined with an array of willow trees, their slender branches swaying gently in the soft breeze. The tranquil surface of the lake reflects the clear blue sky, while several elegant swans glide gracefully through the still water, leaving behind delicate ripples that disturb the mirror-like quality of the lake. The scene is one of serene beauty, with the willows' greenery providing a picturesque frame for the peaceful avian visitors.",
+            "A Chinese mother, draped in a soft, pastel-colored robe, gently rocks back and forth in a cozy rocking chair positioned in the tranquil setting of a nursery. The dimly lit bedroom is adorned with whimsical mobiles dangling from the ceiling, casting shadows that dance on the walls. Her baby, swaddled in a delicate, patterned blanket, rests against her chest, the child's earlier cries now replaced by contented coos as the mother's soothing voice lulls the little one to sleep. The scent of lavender fills the air, adding to the serene atmosphere, while a warm, orange glow from a nearby nightlight illuminates the scene with a gentle hue, capturing a moment of tender love and comfort.",
+            "A detailed wooden toy ship with intricately carved masts and sails is seen gliding smoothly over a plush, blue carpet that mimics the waves of the sea. The ship's hull is painted a rich brown, with tiny windows. The carpet, soft and textured, provides a perfect backdrop, resembling an oceanic expanse. Surrounding the ship are various other toys and children's items, hinting at a playful environment. The scene captures the innocence and imagination of childhood, with the toy ship's journey symbolizing endless adventures in a whimsical, indoor setting.",
+            "The camera follows behind a white vintage SUV with a black roof rack as it speeds up a steep dirt road surrounded by pine trees on a steep mountain slope, dust kicks up from its tires, the sunlight shines on the SUV as it speeds along the dirt road, casting a warm glow over the scene. The dirt road curves gently into the distance, with no other cars or vehicles in sight. The trees on either side of the road are redwoods, with patches of greenery scattered throughout. The car is seen from the rear following the curve with ease, making it seem as if it is on a rugged drive through the rugged terrain. The dirt road itself is surrounded by steep hills and mountains, with a clear blue sky above with wispy clouds.",
+            "A street artist, clad in a worn-out denim jacket and a colorful bandana, stands before a vast concrete wall in the heart, holding a can of spray paint, spray-painting a colorful bird on a mottled wall.",
+            "In the haunting backdrop of a war-torn city, where ruins and crumbled walls tell a story of devastation, a poignant close-up frames a young girl. Her face is smudged with ash, a silent testament to the chaos around her. Her eyes glistening with a mix of sorrow and resilience, capturing the raw emotion of a world that has lost its innocence to the ravages of conflict."
+        ];
+
+        // 测试案例配置
+        const allTestCases = [
+            { videos: ["blind_test/video_01_X.mp4", "blind_test/video_01_Y.mp4"], sparseSide: 1, original: ["b (1).mp4", "c (1).mp4"] },
+            { videos: ["blind_test/video_02_X.mp4", "blind_test/video_02_Y.mp4"], sparseSide: 0, original: ["c (10).mp4", "b (10).mp4"] },
+            { videos: ["blind_test/video_03_X.mp4", "blind_test/video_03_Y.mp4"], sparseSide: 1, original: ["b (11).mp4", "c (11).mp4"] },
+            { videos: ["blind_test/video_04_X.mp4", "blind_test/video_04_Y.mp4"], sparseSide: 1, original: ["b (12).mp4", "c (12).mp4"] },
+            { videos: ["blind_test/video_05_X.mp4", "blind_test/video_05_Y.mp4"], sparseSide: 1, original: ["b (13).mp4", "c (13).mp4"] },
+            { videos: ["blind_test/video_06_X.mp4", "blind_test/video_06_Y.mp4"], sparseSide: 1, original: ["b (2).mp4", "c (2).mp4"] },
+            { videos: ["blind_test/video_07_X.mp4", "blind_test/video_07_Y.mp4"], sparseSide: 1, original: ["b (3).mp4", "c (3).mp4"] },
+            { videos: ["blind_test/video_08_X.mp4", "blind_test/video_08_Y.mp4"], sparseSide: 1, original: ["b (4).mp4", "c (4).mp4"] },
+            { videos: ["blind_test/video_09_X.mp4", "blind_test/video_09_Y.mp4"], sparseSide: 1, original: ["b (5).mp4", "c (5).mp4"] },
+            { videos: ["blind_test/video_10_X.mp4", "blind_test/video_10_Y.mp4"], sparseSide: 1, original: ["b (6).mp4", "c (6).mp4"] },
+            { videos: ["blind_test/video_11_X.mp4", "blind_test/video_11_Y.mp4"], sparseSide: 1, original: ["b (7).mp4", "c (7).mp4"] },
+            { videos: ["blind_test/video_12_X.mp4", "blind_test/video_12_Y.mp4"], sparseSide: 0, original: ["c (8).mp4", "b (8).mp4"] },
+            { videos: ["blind_test/video_13_X.mp4", "blind_test/video_13_Y.mp4"], sparseSide: 1, original: ["b (9).mp4", "c (9).mp4"] }
+        ];
+
+        let testCases = [];
+        let userSelections = [];
+
+        // 随机化视频位置
+        function randomizeTestCase(testCase) {
+            if (Math.random() < 0.5) {
+                const tempVideo = testCase.videos[0];
+                testCase.videos[0] = testCase.videos[1];
+                testCase.videos[1] = tempVideo;
+                const tempOriginal = testCase.original[0];
+                testCase.original[0] = testCase.original[1];
+                testCase.original[1] = tempOriginal;
+                testCase.sparseSide = 1 - testCase.sparseSide;
+            }
+        }
+
+        // 从文件名中提取编号
+        function getPromptIndex(originalFile) {
+            const match = originalFile.match(/\((\d+)\)/);
+            return match ? parseInt(match[1]) - 1 : 0; // 提取括号中的数字，转换为索引（从0开始）
+        }
+
+        // 开始测试，根据选择的数量生成界面
+        function startTest() {
+            const testCount = parseInt(document.getElementById('testCount').value);
+            testCases = allTestCases.slice(0, testCount).map(testCase => {
+                // 使用 original[1]（c 文件）确定提示词索引
+                const promptIndex = getPromptIndex(testCase.original[1]);
+                return { ...testCase, prompt: prompts[promptIndex] };
+            });
+            userSelections = Array(testCount).fill(null);
+
+            // 显示测试界面
+            document.getElementById('instructions').style.display = 'block';
+            document.getElementById('testContainer').style.display = 'block';
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('maxScore').textContent = testCount;
+
+            initTestCases();
+        }
+
+        // 初始化测试界面
+        function initTestCases() {
+            const container = document.getElementById('testContainer');
+            container.innerHTML = ''; // 清空之前的内容
+            testCases.forEach((testCase, index) => {
+                randomizeTestCase(testCase);
+                const sparseIsA = testCase.sparseSide === 0;
+                const videoA = sparseIsA ? 'SparseAttn' : 'StandardAttn';
+                const videoB = sparseIsA ? 'StandardAttn' : 'SparseAttn';
+                const testDiv = document.createElement('div');
+                testDiv.className = 'test-case';
+                testDiv.innerHTML = `
+                    <h3>测试案例 #${index + 1}</h3>
+                    <p class="prompt">${testCase.prompt}</p>
+                    <div class="video-pair">
+                        <video id="videoA_${index}" controls loop>
+                            <source src="${testCase.videos[0]}" type="video/mp4">
+                        </video>
+                        <video id="videoB_${index}" controls loop>
+                            <source src="${testCase.videos[1]}" type="video/mp4">
+                        </video>
+                        <button onclick="playVideos(${index})">播放视频</button>
+                    </div>
+                    <div class="ground-truth" id="truth_${index}">
+                        Video A: ${videoA} (${testCase.original[0]})<br>
+                        Video B: ${videoB} (${testCase.original[1]})
+                    </div>
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="case${index}" value="A" onchange="lockSelection(${index})">
+                            <span>Video A 更好</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="case${index}" value="tie" onchange="lockSelection(${index})">
+                            <span>平局</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="case${index}" value="B" onchange="lockSelection(${index})">
+                            <span>Video B 更好</span>
+                        </label>
+                    </div>
+                `;
+                container.appendChild(testDiv);
+            });
+        }
+
+        // 锁定选择，不显示真实标签
+        function lockSelection(index) {
+            const selected = document.querySelector(`input[name="case${index}"]:checked`);
+            if (selected) {
+                userSelections[index] = selected.value;
+                const radioGroup = document.getElementsByName(`case${index}`);
+                radioGroup.forEach(radioButton => radioButton.disabled = true);
+            }
+        }
+
+        // 同时播放两段视频
+        function playVideos(index) {
+            const videoA = document.getElementById(`videoA_${index}`);
+            const videoB = document.getElementById(`videoB_${index}`);
+            videoA.currentTime = 0;
+            videoB.currentTime = 0;
+            videoA.play();
+            videoB.play();
+        }
+
+        // 计算并显示结果，显示真实标签
+        function calculateResults() {
+            let sparsePoints = 0;
+            let standardPoints = 0;
+
+            userSelections.forEach((selection, index) => {
+                const testCase = testCases[index];
+                const sparseIsA = testCase.sparseSide === 0;
+
+                if (selection === 'tie') {
+                    sparsePoints += 0.5;
+                    standardPoints += 0.5;
+                } else if (selection) {
+                    const isSparseSelected = 
+                        (selection === 'A' && sparseIsA) || 
+                        (selection === 'B' && !sparseIsA);
+                    if (isSparseSelected) {
+                        sparsePoints += 1;
+                    } else {
+                        standardPoints += 1;
+                    }
+                }
+                document.getElementById(`truth_${index}`).style.display = 'block'; // 显示真实标签
+            });
+
+            // 更新界面
+            document.getElementById('sparseScore').textContent = sparsePoints;
+            document.getElementById('standardScore').textContent = standardPoints;
+
+            console.log('详细结果:', {
+                sparsePoints,
+                standardPoints,
+                selections: userSelections,
+                testCases
+            });
+        }
+    </script>
+</body>
+</html>
