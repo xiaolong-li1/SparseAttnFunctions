@@ -207,4 +207,6 @@ This repository contains multiple optimized implementations of sparse attention 
 </table>
 
 To view the corresponding prompt words for the gallery, please click [here](./examples/prompts.txt)
+## Blind Test
+[Here comes a blind test](https://xiaolong-li1.github.io/SparseAttnFunctions/Q1_CHECKED/test.html)
 </div>
