@@ -210,7 +210,7 @@ To view the corresponding prompt words for the gallery, please click [here](./ex
 
 ## Blind Test Experiment
 
-<a href="https://xiaolong-li1.github.io/SparseAttnFunctions/Q1_CHECKED/test.html" target="_blank" style="
+<a href="https://xiaolong-li1.github.io/SparseAttnFunctions/Q2_CHECKED/test.html" target="_blank" style="
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
