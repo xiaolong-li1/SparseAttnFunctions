@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Comparison</title>
+    <style>
+        .video-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .video-wrapper {
+            width: 30%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .video-holder {
+            width: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+        video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .video-label {
+            padding: 8px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            background: #f5f5f5;
+        }
+        .video-label.sparse {
+            color: #e74c3c;
+        }
+        .video-label.ref {
+            color: #3498db;
+        }
+        .video-label.ref50 {
+            color: #9b59b6;
+        }
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 120px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #27ae60;
+            transform: scale(1.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin: 30px 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Comparison - Sparse vs 4 step Reference vs 50 step Ref</h1>
+    
+    <div id="videoGrid"></div>
+
+    <script>
+        const indices = Array.from({length: 12}, (_, i) => i);
+        const videoGrid = document.getElementById('videoGrid');
+
+        indices.forEach(i => {
+            // 创建主容器
+            const container = document.createElement('div');
+            container.className = 'video-container';
+
+            // 创建第一个视频容器（Sparse）
+            const sparseWrapper = createVideoWrapper(
+                `./video_sparse/${i}.mp4`, 
+                'Sparse View', 
+                'sparse'
+            );
+
+            // 创建第二个视频容器（Reference）
+            const refWrapper = createVideoWrapper(
+                `./video_ref/${i}.mp4`, 
+                '4 steps Reference', 
+                'ref'
+            );
+
+            // 创建第三个视频容器（50% Ref）
+            const ref50Wrapper = createVideoWrapper(
+                `./video_50_ref/${i}.mp4`, 
+                '50 steps Reference', 
+                'ref50'
+            );
+
+            // 创建控制面板
+            const controlPanel = document.createElement('div');
+            controlPanel.className = 'control-panel';
+            
+            const playButton = document.createElement('button');
+            playButton.textContent = '▶ Play All';
+            playButton.onclick = () => {
+                [
+                    sparseWrapper.querySelector('video'),
+                    refWrapper.querySelector('video'),
+                    ref50Wrapper.querySelector('video')
+                ].forEach(video => video.play());
+            };
+
+            // 组装元素
+            controlPanel.appendChild(playButton);
+            container.appendChild(sparseWrapper);
+            container.appendChild(refWrapper);
+            container.appendChild(ref50Wrapper);
+            container.appendChild(controlPanel);
+            
+            // 添加到页面
+            videoGrid.appendChild(container);
+        });
+
+        // 创建视频容器的通用函数
+        function createVideoWrapper(src, labelText, labelClass) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'video-wrapper';
+            
+            const videoHolder = document.createElement('div');
+            videoHolder.className = 'video-holder';
+            
+            const video = document.createElement('video');
+            video.src = src;
+            video.controls = true;
+            
+            const label = document.createElement('div');
+            label.className = `video-label ${labelClass}`;
+            label.textContent = labelText;
+            
+            videoHolder.appendChild(video);
+            wrapper.appendChild(videoHolder);
+            wrapper.appendChild(label);
+            
+            return wrapper;
+        }
+    </script>
+</body>
+</html>
